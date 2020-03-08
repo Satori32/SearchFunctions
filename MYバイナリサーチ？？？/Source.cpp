@@ -111,7 +111,7 @@ it BinarySearchIter(it A, it B, const T& V) {
 }
 
 template<class T,class Container>
-std::size_t BlockRetioSearch(const Container& D, const T& V,const std::size_t& Div) {
+std::size_t BlockSearchRetio(const Container& D, const T& V,const std::size_t& Div) {
 	if (D.size() == 0) { return D.size(); }
 	std::size_t P = BlockSearchBlock(D, V, Div);
 	double S = (D.size()-1) / (double)Div;
@@ -120,20 +120,20 @@ std::size_t BlockRetioSearch(const Container& D, const T& V,const std::size_t& D
 	return (*it) == V ? std::distance(D.begin(), it) : D.size();
 }
 template<class T,class Container>
-std::size_t BinaryRatioSearch(const Container& D, const T& V, const std::size_t& Div) {
+std::size_t BinarySearchRatio(const Container& D, const T& V, const std::size_t& Div) {
 	std::size_t  P = BinarySearchBlock(D, V, Div);
 	double S = D.size() / (double)Div;
 	auto it = BinarySearchIter(D.begin() + (P*S), D.begin() + ((P+1)*S), V);
 	return (*it) == V ? std::distance(D.begin(), it) : D.size();
 }
-/**/
+/** /
 int main() {
 	DType D = MakeVector(((1 << 8) << 8));
 	std::size_t Div = 7;
 
 	for (std::size_t j = 2; j < Div; j++) {
 		for (std::size_t i = 0; i < D.size(); i++) {
-			if (BinaryRatioSearch(D, i, j) != D[i]) {
+			if (BinarySearchRatio(D, i, j) != D[i]) {
 				std::cout << i<<":" <<j<< std::endl;
 
 			}
@@ -160,14 +160,14 @@ int main() {
 	
 	return 0;
 }
-/* * /
+/* */
 int main() {
 	DType D = MakeVector(((1<<8)<<8));
 	std::size_t Div = 7;
 
 	for (std::size_t j = 2; j < Div; j++) {
 		for (std::size_t i = 0; i < D.size(); i++) {
-			if (BlockRetioSearch(D, i, j) != D[i]) {
+			if (BlockSearchRetio(D, i, j) != D[i]) {
 				std::cout << i <<":"<<j<< std::endl;
 
 			}
